@@ -1,6 +1,6 @@
+import sqlite3 as sql
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 from .utils.extract import detect_labels_url
-import sqlite3 as sql
 from .imageModel import Image
 
 
@@ -16,6 +16,7 @@ def home():
 def add():
     if request.method == 'POST':
         imageURL = request.form.get('imageURL')
+        imageName = request.form.get('name')
         # check if image is valid?
 
         labels = detect_labels_url(imageURL)
@@ -23,26 +24,19 @@ def add():
         from . import db
 
         labelStrings = " ".join(labels)
-        image = Image(url=imageURL, labels=labelStrings)
+        image = Image(url=imageURL, labels=labelStrings, name=imageName)
         db.session.add(image)
         db.session.commit()
 
-        flash('Image added!', category='success')
+        flash(f'Image: {image.name} added!', category='success')
         return redirect(url_for('views.add'))
 
     return render_template('add.html')
 
 
-def get_cursor():
-    conn = sql.connect("database.db")
-    cursor = conn.cursor()
-    return cursor, conn
-
-
 @views.route('/search', methods=['GET', 'POST'])
 def search():
     if request.method == 'POST':
-        cursor, conn = get_cursor()
         label = request.form.get('label')
 
         if label == 'Everything':
@@ -50,10 +44,7 @@ def search():
         else:
             results = Image.query.filter(Image.labels.contains(label)).all()
 
-        data = list()
-        for result in results:
-            data.append(result.url)
-
-        return render_template('search.html', data=data)
+        flash(f'Showing similar images to: {label}', category='success')
+        return render_template('search.html', images=results)
 
     return render_template('search.html')
