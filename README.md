@@ -1,6 +1,14 @@
 # Machine Learning Image Repository - Shopify Image Repository Submission Joshua Cheng
 
-This project is my submission for the Shopify Image Repository challenge. This project incorporates a powerful general machine learning model that generates a description for any input image. This allows us to automatically label images added to this repository to be searched. No more manual labelling!
+This project is my submission for the Fall 2021 Shopify Image Repository challenge.  
+This image repository allows users to add and search for images. A machine learning model extracts details from each of the images added, allowing for automatic labelling. For example, uploading the photo below generates the following labels from the machine learning model: `Food Ingredient Fast food Bun Recipe Staple food Cuisine Dish Sandwich Baked goods`. This allows users to search for images that were given a certain label, and get returned images that match that search criteria. With all of these steps abstracted away from the user, we can say goodbye to manual labelling!
+![](example.jpg)
+
+## Stack
+1. [Python 3](https://www.python.org)
+1. [Flask](https://flask.palletsprojects.com/en/1.1.x/)
+1. [Google Vision API](https://cloud.google.com/vision)
+1. [SQLite3](https://www.sqlite.org/index.html)
 
 ## Project Flow
 ### Add Image
@@ -9,19 +17,13 @@ This project is my submission for the Shopify Image Repository challenge. This p
 1. The image will then be added to the database
 
 ### Search Image
-1. Enter some keyword to search for similar images. Some sample labels I tested with include:  
-`Food`  
-`Water`  
-`Sport`  
-`Home`  
-`Car`
+1. Enter some keyword to search for similar images. Some sample labels I tested with that are my favourites include:  
+`food`  
+`cabinetry`  
+`water`  
+`cloud`  
+`building`
 1. Images with matching labels will then be queried and displayed to the user, along with the original assigned image name.
-
-## Stack
-1. [Python 3](https://www.python.org)
-1. [Flask](https://flask.palletsprojects.com/en/1.1.x/)
-1. [Google Vision API](https://cloud.google.com/vision)
-1. [SQLite3](https://www.sqlite.org/index.html)
 
 ## Quickstart Setup For Image Search
 1. Install the required dependencies through the `requirements.txt` file provided:
