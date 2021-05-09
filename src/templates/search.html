@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Search{% endblock %}
+
+{%block contents %}
+<h1 align="center">Search for an Image</h1>
+<br />
+<form method="POST">
+  <div class="form-group">
+    <input
+      type="text"
+      class="form-control"
+      id="label"
+      name="label"
+      placeholder="Enter a label to search similar images"
+    />
+  </div>
+  <br />
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<center>
+  {% for url in data %}
+      <tr>
+          <td>
+            <img src={{url}} alt="Image not found" style="max-width: 75%;">
+          </td>
+          </br>
+      </tr>
+  {% endfor %}
+  </center>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %} {% block title %}Add{% endblock %} {%block contents %}
+<h1 align="center">Add an Image</h1>
+<br />
+<form method="POST">
+  <div class="form-group">
+    <input
+      type="text"
+      class="form-control"
+      id="imageURL"
+      name="imageURL"
+      placeholder="Enter image URL"
+    />
+  </div>
+  <br />
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% endblock %}
